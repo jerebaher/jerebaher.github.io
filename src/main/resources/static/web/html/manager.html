@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://bootswatch.com/5/litera/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles/style.css">
+    <title>Client Manager</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="grid">
+            <div class="grid1">
+                <header>
+                    <h1>INTERBANK Client Manager</h1>
+                </header>
+        
+                <form class="formClient">
+                    <div class="inputsForm">
+                        <label>Name
+                            <input type="text" v-model="clientsNames">
+                        </label>
+                        <label>Last Name
+                            <input type="text" v-model="clientsLastNames">
+                        </label>
+                        <label>Email Address
+                            <input type="text" v-model="clientsEmails">
+                        </label>
+                    </div>
+                </form>
+                <div class="btnForm">
+                    <button type="button" class="btn btn-success" @click="createNewClient">Add client</button>
+                </div>
+                <div class="tableBox">
+                    <h1 class="titleTable">Clients list</h1>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Last Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Number Account</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="client in clients">
+                                <th scope="row">{{client.name}}</th>
+                                <td>{{client.lastName}}</td>
+                                <td>{{client.email}}</td>
+                                <td v-for="account in client.accountDTOS">{{account.numberAccount}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="grid2">
+                <h1 class="titleClientResponse">Client REST Response</h1>
+                <pre>{{clients}}</pre>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="/web/js/manager.js"></script>
+</body>
+</html>

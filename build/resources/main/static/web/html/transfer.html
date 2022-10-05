@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/web/styles/transfer/form.css">
+    <link rel="stylesheet" href="/web/styles/transfer/style.css">
+    <link rel="stylesheet" href="/web/styles/transfer/sideBar.css">
+    <!-- ICONOS -->
+    <script src="https://kit.fontawesome.com/497ab6b7a7.js" crossorigin="anonymous"></script>
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <!-- FUENTES -->
+    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@200,500,201,600,400,700&f[]=clash-display@200,400,700&display=swap" rel="stylesheet">
+
+    <title>Transferencias</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <nav class="main-menu">
+            <ul>
+                <li>
+                    <a href="#">
+                        <div class="icon-sidebar">
+                            <i class="fa-solid fa-house"></i>
+                        </div>
+                        <span class="nav-text">
+                            Inicio
+                        </span>
+                    </a>
+                </li>
+                <li class="has-subnav">
+                    <a href="/web/html/accounts.html">
+                        <div class="icon-sidebar">
+                            <i class="fa-solid fa-vault"></i>
+                        </div>
+                        <span class="nav-text">
+                            Cuentas
+                        </span>
+                    </a>
+                </li>
+                <li class="has-subnav">
+                    <a href="/web/html/cards.html">
+                        <div class="icon-sidebar">
+                            <i class="fa-brands fa-cc-mastercard"></i>
+                        </div>
+                        <span class="nav-text">
+                            Tarjetas
+                        </span>
+                    </a>
+                </li>
+                <li class="has-subnav">
+                    <a href="#">
+                        <div class="icon-sidebar">
+                            <i class="fa-solid fa-hand-holding-dollar"></i>
+                        </div>
+                        <span class="nav-text">
+                            Prestamos
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="icon-sidebar">
+                            <i class="fa-solid fa-chart-column"></i>
+                        </div>
+                        <span class="nav-text">
+                            Inversiones
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="icon-sidebar">
+                            <i class="fa-solid fa-file-invoice"></i>
+                        </div>
+                        <span class="nav-text">
+                            Seguros
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="icon-sidebar">
+                            <i class="fa-solid fa-receipt"></i>
+                        </div>
+                        <span class="nav-text">
+                            Pagos
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="icon-sidebar">
+                            <i class="fa-solid fa-circle-question"></i>
+                        </div>
+                        <span class="nav-text">
+                            Consultas y solicitudes
+                        </span>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="logout">
+                <li>
+                    <a href="#" id="logout-link">
+                        <div class="icon-sidebar">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                        </div>
+                        <button id="logout-btn" class="nav-text" @click="logout">
+                            Logout
+                        </button>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <main>
+            <div class="topbar">
+                <div class="iconsBox">
+                    <a href="#" class="inbox">
+                        <button type="button" class="btn btn-primary position-relative">
+                            Inbox
+                            <span
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                5
+                                <span class="visually-hidden">unread messages</span>
+                            </span>
+                        </button>
+                    </a>
+                    <a href="#" class="dropdown">
+                        <div class="dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                            @click="gearRotated = !gearRotated">
+                            <div :class="gearRotated ? 'gear-icon-rotated':'gear-icon'">
+                                <i class="fa-solid fa-gear fa-xl"></i>
+                            </div>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#" @click="logout">Log out</a></li>
+                            </ul>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="top-main-section">
+                <div class="title-main-section">
+                    <h2>Que bueno que estes aquí, {{client.name}} {{client.lastName}}</h2>
+                </div>
+            </div>
+            <div class="main-section">
+                <div id="main-sect-1">
+                    <div class="container" id="container">
+                        <div class="form-container sign-up-container">
+                            <form>
+                                <h1>Cuenta local</h1>
+                                <label>
+                                    <span>Elige cuenta de origen</span>
+                                    <select v-model="originAccInt" required>
+                                        <option v-for="account in accounts">{{account.numberAccount}}</option>
+                                    </select>
+                                </label>
+                                <label>
+                                    <span>Elige cuenta de destino</span>
+                                    <select v-model="targetAccInt" required>
+                                        <option v-for="account in accounts">{{account.numberAccount}}</option>
+                                    </select>
+                                </label>
+                                <label>
+                                    <span>Elige el monto a transferir</span>
+                                    <input class="input-form" type="number" placeholder="Monto" v-model="amount" min="0" step="0.01"
+                                        required>
+                                </label>
+                                <label>
+                                    <span>Elige la razón</span>
+                                    <select v-model="desc" required>
+                                        <option>Aportes de capital</option>
+                                        <option>Alquiler</option>
+                                        <option>Vehiculo</option>
+                                        <option>Compra</option>
+                                        <option>Venta</option>
+                                        <option>Servicios</option>
+                                        <option>Renta</option>
+                                        <option>Varios</option>
+                                        <option>Otro</option>
+                                    </select>
+                                </label>
+                                <button type="button" class="btn-submit" @click="createTransfer">Enviar transferencia</button>
+                            </form>
+                        </div>
+                        <div class="form-container sign-in-container">
+                            <form>
+                                <h1>Cuenta externa</h1>
+                                <label>
+                                    <span>Elige cuenta de origen</span>
+                                    <select v-model="originAccExt" required>
+                                        <option v-for="account in accounts">{{account.numberAccount}}</option>
+                                    </select>
+                                </label>
+                                <label>
+                                    <span>Elige cuenta de destino</span>
+                                    <input class="input-form" type="text" v-model="targetAccExt" placeholder="Cuenta de destino" required>
+                                </label>
+                                <label>
+                                    <span>Elige el monto a transferir</span>
+                                    <input class="input-form" type="number" placeholder="Monto" v-model="amount" min="0" step="0.01"
+                                        required>
+                                </label>
+                                <label>
+                                    <span>Elige la razón</span>
+                                    <select v-model="desc" required>
+                                        <option>Aportes de capital</option>
+                                        <option>Alquiler</option>
+                                        <option>Vehiculo</option>
+                                        <option>Compra</option>
+                                        <option>Venta</option>
+                                        <option>Servicios</option>
+                                        <option>Renta</option>
+                                        <option>Varios</option>
+                                        <option>Otro</option>
+                                    </select>
+                                </label>
+                                <button type="button" class="btn-submit" @click="createTransfer">Enviar transferencia</button>
+                            </form>
+                        </div>
+                        <div class="overlay-container">
+                            <div class="overlay">
+                                <div class="overlay-panel overlay-left">
+                                    <div class="overlay-panel-up">
+                                        <h3 class="overlay-panel-tl">Transferir a una cuenta local</h3>
+                                        <p>Completa los datos en los campos y realiza tu transferencia al instante</p>
+                                    </div>
+                                    <div class="overlay-panel-bottom">
+                                        <h3 class="overlay-panel-tl">O transferir a una cuenta externa</h3>
+                                        <p>Presiona el boton para transferir a una cuenta externa</p>
+                                        <button class="ghost" id="external-transfer">Transferencia externa</button>
+                                    </div>
+                                </div>
+                                <div class="overlay-panel overlay-right">
+                                    <div class="overlay-panel-up">
+                                        <h3 class="overlay-panel-tl">Transferir a una cuenta externa</h3>
+                                        <p>Completa los datos en los campos y realiza tu transferencia al instante</p>
+                                    </div>
+                                    <div class="overlay-panel-bottom">
+                                        <h3 class="overlay-panel-tl">O transferir a una cuenta local</h3>
+                                        <p>Presiona el boton para transferir a una cuenta local</p>
+                                        <button class="ghost" id="local-transfer">Transferencia local</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="footer-list">
+                <div>
+                    <img src="" alt="">
+                    <span>© OnlineBanking. All Rights Reserved.</span>
+                    <span>Powered by Cohort 29</span>
+                </div>
+                <div>
+                    <ul>
+                        <li><a href="">Soluciones</a></li>
+                        <li><a href="">Fundadores de negocios</a></li>
+                        <li><a href="">Freelancers</a></li>
+                        <li><a href="">PyMES</a></li>
+                        <li><a href="">Startups</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <ul>
+                        <li><a href="">Info</a></li>
+                        <li><a href="">Caracteristicas</a></li>
+                        <li><a href="">Planes</a></li>
+                        <li><a href="">Nuestra historia</a></li>
+                        <li><a href="">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <ul>
+                        <li><a href="">Aprender</a></li>
+                        <li><a href="">Blog</a></li>
+                        <li><a href="">Carreras</a></li>
+                        <li><a href="">Guia de estilos</a></li>
+                        <li><a href="">Licencias</a></li>
+                        <li><a href="">Instrucciones</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <ul>
+                        <li><a href="">Admin</a></li>
+                        <li><a href="">Politicas de privacidad</a></li>
+                        <li><a href="">Terminos y condiciones</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="/web/js/transfer.js"></script>
+    <script src="/web/js/form.js"></script>
+</body>
+
+</html>

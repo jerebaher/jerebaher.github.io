@@ -1,0 +1,268 @@
+:root {
+  --main-color: #f8f9fa;
+  --second-color: #ffffff;
+  --third-color: #0b72ff;
+  --forth-color: #0565eb;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.ctr {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+#left-side {
+  min-height: 35em;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 1em;
+}
+
+#right-side {
+  background-image: url(/web/src/img/foto.png);
+  background-size: cover;
+  background-position: center;
+}
+
+#login, #register{
+  max-width: 30em;
+  min-height: 26em;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.header-form{
+  width: 100%;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  padding: .8em 0;
+  box-sizing: content-box;
+}
+.box-tl, .box-desc{
+  display: flex;
+  padding: .4em 0;
+}
+.box-tl h2 {
+  font-size: 2em;
+  font-weight: 400;
+}
+.box-tl h2 span:first-child {
+  font-weight: 600;
+}
+.box-tl h2 span span:first-child {
+  font-weight: 800;
+  color: var(--third-color);
+}
+.box-desc > p:first-child{
+  font-size: 1.2em;
+  color: #a4a4a4;
+}
+#form-login, #form-register{
+  width: 100%;
+  display: flex;
+  flex-flow: column wrap;
+  padding: 1em 0;
+  box-sizing: content-box;
+}
+.box-input{
+  display: flex;
+  margin: .8em 0;
+  padding: .6em;
+  border: 1px solid #ababab59;
+  border-radius: 8px;
+}
+.box-input label{
+  display: flex;
+  flex-flow: column wrap;
+  font-size: .9em;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #0565eb;
+}
+.box-input label span:first-child{
+  margin: .1em 0;
+}
+.box-input label input[type="text"], .box-input label input[type="text"]:focus,
+.box-input label input[type="email"], .box-input label input[type="email"]:focus,
+.box-input label input[type="password"], .box-input label input[type="password"]:focus{
+  border: none;
+  outline: none;
+}
+.box-input label input[type="text"], .box-input label input[type="email"],
+.box-input label input[type="password"]{
+  min-height: 2em;
+  font-weight: 500;
+  color: #949494;
+}
+.box-input label input[type="text"]::placeholder, .box-input label input[type="email"]::placeholder,
+.box-input label input[type="password"]::placeholder{
+  color: #cacaca;
+  font-size: 1em;
+}
+.form-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1em 0;
+}
+.form-footer > div:first-child > label{
+  display: flex;
+  justify-content: space-between;
+}
+.form-footer > div:first-child > label span{
+  color: #a4a4a4;
+  font-size: .9em;
+  margin: 0 0 0 .2em;
+}
+.form-footer > div:first-child > label input[type="checkbox"]{
+  width: 1.1em;
+}
+.form-footer > div:nth-child(2) > div:first-child a{
+  font-size: .9em;
+}
+#form-login button[type="submit"], #form-register button[type="submit"]{
+  width: 100%;
+  margin: 1em 0;
+  min-height: 3em;
+  border: none;
+  border-radius: 12px;
+  background-color: var(--third-color);
+  color: white;
+  font-size: .9em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .2s ease;
+}
+#form-login button[type="submit"]:hover, 
+#form-register button[type="submit"]:hover{
+  background-color: var(--forth-color);
+}
+#link-login, #link-register{
+  color: #0b72ff;
+  text-decoration: underline;
+  cursor: pointer;
+}
+#link-login:hover, #link-register:hover{
+  color: #0565eb;
+}
+.other-form{
+  text-align: center;
+}
+
+.hidden{
+  display: none !important;
+  transition: all .5s ease;
+}
+
+@media (max-width: 1080px){
+  .box-tl h2 {
+    font-size: 2em;
+  }
+  .box-desc > p:first-child{
+    font-size: 1em;
+  }
+  .box-input{
+    margin: .8em 0;
+    padding: .4em;
+  }
+  .box-input label{
+    font-size: .5em;
+  }
+  .box-input label input[type="text"], .box-input label input[type="email"],
+  .box-input label input[type="password"]{
+    min-height: 2em;
+  }
+  .box-input label input[type="text"]::placeholder, .box-input label input[type="email"]::placeholder,
+  .box-input label input[type="password"]::placeholder{
+    font-size: .8em;
+  }
+  .form-footer > div:first-child > label span{
+    font-size: .8em;
+  }
+  .form-footer > div:first-child > label input[type="checkbox"]{
+    width: .9em;
+  }
+  .form-footer > div:nth-child(2) > div:first-child a{
+    font-size: .8em;
+  }
+  #form-login button[type="submit"], #form-register button[type="submit"]{
+    font-size: .8em;
+  }
+  .other-form{
+    font-size: .8em;
+  }
+}
+@media (max-width: 900px){
+  .ctr{
+    display: grid;
+    grid-template-rows: .4fr 1fr;
+    grid-template-columns: none;
+  }
+  #right-side{
+    grid-row-start: 1;
+    max-height: 13em;
+    background-position-y: 48em;
+  }
+  #form-login, #form-register{
+    padding: .5em 0 1em 0;
+  }
+  .header-form{
+    padding: .5em 0;
+  }
+}
+@media (max-width: 430px){
+  .ctr{
+    display: block;
+  }
+  #right-side{
+    display: none;
+  }
+  #login, #register{
+    max-width: 20em;
+  }
+  .box-tl h2 {
+    font-size: 1.5em;
+  }
+  .box-desc > p:first-child{
+    font-size: .9em;
+  }
+  .box-input{
+    margin: .8em 0;
+    padding: .4em;
+  }
+  .box-input label{
+    font-size: .5em;
+  }
+  .box-input label input[type="text"], .box-input label input[type="email"],
+  .box-input label input[type="password"]{
+    min-height: 2em;
+  }
+  .box-input label input[type="text"]::placeholder, .box-input label input[type="email"]::placeholder,
+  .box-input label input[type="password"]::placeholder{
+    font-size: .8em;
+  }
+  .form-footer > div:first-child > label span{
+    font-size: .8em;
+  }
+  .form-footer > div:first-child > label input[type="checkbox"]{
+    width: .9em;
+  }
+  .form-footer > div:nth-child(2) > div:first-child a{
+    font-size: .8em;
+  }
+  #form-login button[type="submit"], #form-register button[type="submit"]{
+    font-size: .8em;
+  }
+  .other-form{
+    font-size: .8em;
+  }
+}

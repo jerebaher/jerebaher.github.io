@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/web/styles/index/login.css">
+    <title>Login</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <div class="ctr">
+            <div id="left-side">
+                <div id="login">
+                    <div class="header-form">
+                        <div class="box-tl">
+                            <h2>Bienvenido a
+                                <span>
+                                    <span>Online</span>
+                                    <span>Banking</span>
+                                </span>
+                            </h2>
+                        </div>
+                        <div class="box-desc">
+                            <p>Inicia sesión para ver tus cuentas.</p>
+                        </div>
+                    </div>
+                    <form id="form-login" @submit.prevent="login">
+                        <div>
+                            <div class="box-input">
+                                <label>
+                                    <span>Correo electronico</span>
+                                    <input type="text" v-model="address" placeholder="tucorreo@gmail.com"
+                                        autocomplete="username" required>
+                                </label>
+                            </div>
+                            <div class="box-input">
+                                <label>
+                                    <span>Contraseña</span>
+                                    <input type="password" v-model="password" placeholder="onlinebank123"
+                                        autocomplete="current-password" required>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-footer">
+                            <div>
+                                <label>
+                                    <input type="checkbox">
+                                    <span>Recordar</span>
+                                </label>
+                            </div>
+                            <div>
+                                <div>
+                                    <a href="">Olvidaste tu contraseña</a>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit">Login</button>
+                        <p class="other-form">¿Aún no tienes una cuenta?. <a id="link-register">Registrate aquí.</a></p>
+                    </form>
+                </div>
+                <div id="register" class="hidden">
+                    <div class="header-form">
+                        <div class="box-tl">
+                            <h2>Bienvenido a
+                                <span>
+                                    <span>Online</span>
+                                    <span>Banking</span>
+                                </span>
+                            </h2>
+                        </div>
+                        <div class="box-desc">
+                            <p>Crea una cuenta para disfrutar de nuestros beneficios.</p>
+                        </div>
+                    </div>
+                    <form id="form-register" @submit.prevent="signup">
+                        <div>
+                            <div class="box-input">
+                                <label>
+                                    <span>Nombre</span>
+                                    <input type="text" v-model="firstName" placeholder="Juan" autocomplete="name" required>
+                                </label>
+                            </div>
+                            <div class="box-input">
+                                <label>
+                                    <span>Apellido</span>
+                                    <input type="text" v-model="lastName" placeholder="Perez" required>
+                                </label>
+                            </div>
+                            <div class="box-input">
+                                <label>
+                                    <span>Correo electronico</span>
+                                    <input type="email" v-model="addressRegister" placeholder="tucorreo@gmail.com" autocomplete="username" required>
+                                </label>
+                            </div>
+                            <div class="box-input">
+                                <label>
+                                    <span>Contraseña</span>
+                                    <input type="password" v-model="passwordRegister" placeholder="onlinebank123" 
+                                    autocomplete="new-password" required>
+                                </label>
+                            </div>
+                        </div>
+                        <button type="submit">Crear cuenta</button>
+                        <p class="other-form">¿Ya tienes una cuenta?. <a id="link-login">Inicia sesion aquí.</a></p>
+                    </form>
+                </div>
+            </div>
+            <div id="right-side"></div>
+        </div>
+    </div>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="/web/js/index.js"></script>
+</body>
+
+</html>
